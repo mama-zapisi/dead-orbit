@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEAD ORBIT — скачать</title>
+<style>
+:root{--bg:#07090b;--fg:#d9e2dc;--mut:#7d8a84;--acc:#c8301f;--line:#1c2422}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,Segoe UI,Roboto,sans-serif}
+main{max-width:900px;margin:0 auto;padding:40px 16px 60px}
+h1{font:800 clamp(40px,8vw,84px)/1 Impact,system-ui,sans-serif;letter-spacing:.06em;margin:0 0 6px;color:#e8ece8}
+.sub{color:var(--mut);margin:0 0 28px}
+img{width:100%;border:1px solid var(--line);border-radius:6px;display:block;margin:0 0 28px}
+button{background:var(--acc);color:#fff;border:0;border-radius:6px;padding:18px 34px;font:700 20px system-ui;cursor:pointer}
+button:disabled{opacity:.6;cursor:default}
+.bar{height:10px;background:#141a19;border-radius:5px;overflow:hidden;margin:18px 0 6px;display:none}.bar i{display:block;height:100%;width:0;background:var(--acc)}
+#st{color:var(--mut);min-height:1.5em}
+ol{padding-left:22px}li{margin:6px 0}code{background:#141a19;padding:1px 6px;border-radius:4px}
+.alt{margin-top:28px;color:var(--mut);font-size:14px}.alt a{color:var(--fg)}
+</style></head><body><main>
+<h1>DEAD ORBIT</h1>
+<p class="sub">Планетарий «Орбита», ночная смена. Проба графики на Godot 4 — офис. Windows, 176 МБ.</p>
+<img src="files/screens.jpg" alt="Офис охранника: стол, монитор, лампа, роботы в дверях">
+<button id="dl">Скачать игру</button>
+<div class="bar" id="bar"><i id="fill"></i></div>
+<div id="st"></div>
+<h2>Как запустить</h2>
+<ol>
+<li>Скачается <code>DeadOrbit_v1b.zip</code>. Правой кнопкой → <b>«Извлечь всё…»</b>.</li>
+<li>Открой папку <code>DeadOrbit</code> → <code>DeadOrbit.exe</code>.</li>
+<li>«Неизвестный издатель» → <b>«Подробнее» → «Выполнить в любом случае»</b>.</li>
+<li>Если <code>DeadOrbit.exe</code> пропал — его убрал Защитник: «Безопасность Windows» → «Защита от вирусов и угроз» → «Журнал защиты» → <b>«Восстановить»</b>.</li>
+</ol>
+<p>Управление: мышь у края — поворот · Q/E — свет · A/D — двери · 1/2 — робот в проёме · 3 — убрать · F — экран · Esc — выход.</p>
+<p class="alt">Если кнопка не сработала: скачай <a href="files/DeadOrbit.part0.bin">часть 1</a>, <a href="files/DeadOrbit.part1.bin">часть 2</a>, <a href="files/DeadOrbit.part2.bin">часть 3</a> и <a href="files/sobrat.bat">sobrat.bat</a> в одну папку и запусти sobrat.bat.</p>
+</main>
+<script>
+const parts=['files/DeadOrbit.part0.bin','files/DeadOrbit.part1.bin','files/DeadOrbit.part2.bin'], TOTAL=184570243;
+const b=document.getElementById('dl'), st=document.getElementById('st'), bar=document.getElementById('bar'), fill=document.getElementById('fill');
+b.onclick=async()=>{b.disabled=true;bar.style.display='block';let got=0;const chunks=[];
+ try{for(let i=0;i<parts.length;i++){const r=await fetch(parts[i]);if(!r.ok)throw new Error('часть '+(i+1)+': '+r.status);const rd=r.body.getReader();
+   for(;;){const {done,value}=await rd.read();if(done)break;chunks.push(value);got+=value.length;fill.style.width=(got/TOTAL*100).toFixed(1)+'%';st.textContent='Загрузка: '+(got/1048576).toFixed(0)+' / '+(TOTAL/1048576).toFixed(0)+' МБ';}}
+  const blob=new Blob(chunks,{type:'application/zip'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='DeadOrbit_v1b.zip';document.body.appendChild(a);a.click();
+  st.textContent='Готово — файл DeadOrbit_v1b.zip сохранён.';}
+ catch(e){st.textContent='Не получилось ('+e.message+'). Скачай части по ссылкам ниже.';b.disabled=false;}};
+</script></body></html>
