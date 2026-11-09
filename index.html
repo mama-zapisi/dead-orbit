@@ -29,10 +29,10 @@ ol{padding-left:22px}li{margin:6px 0}code{background:#141a19;padding:1px 6px;bor
 <li>Если <code>DeadOrbit.exe</code> пропал — его убрал Защитник: «Безопасность Windows» → «Защита от вирусов и угроз» → «Журнал защиты» → <b>«Восстановить»</b>.</li>
 </ol>
 <p>Управление: мышь у края — поворот · Q/E — свет · A/D — двери · 1/2 — робот в проёме · 3 — убрать · F — экран · Esc — выход.</p>
-<p class="alt">Если кнопка не сработала: скачай <a href="files/DeadOrbit.part0.bin">часть 1</a>, <a href="files/DeadOrbit.part1.bin">часть 2</a>, <a href="files/DeadOrbit.part2.bin">часть 3</a> и <a href="files/sobrat.bat">sobrat.bat</a> в одну папку и запусти sobrat.bat.</p>
+<p class="alt">Если кнопка не сработала: скачай <a href="https://github.com/mama-zapisi/dead-orbit/raw/main/files/DeadOrbit.part0.bin">часть 1</a>, <a href="https://github.com/mama-zapisi/dead-orbit/raw/main/files/DeadOrbit.part1.bin">часть 2</a>, <a href="https://github.com/mama-zapisi/dead-orbit/raw/main/files/DeadOrbit.part2.bin">часть 3</a> и <a href="https://github.com/mama-zapisi/dead-orbit/raw/main/files/sobrat.bat">sobrat.bat</a> в одну папку и запусти sobrat.bat.</p>
 </main>
 <script>
-const parts=['files/DeadOrbit.part0.bin','files/DeadOrbit.part1.bin','files/DeadOrbit.part2.bin'], TOTAL=184570243;
+const parts=['https://raw.githubusercontent.com/mama-zapisi/dead-orbit/main/files/DeadOrbit.part0.bin','https://raw.githubusercontent.com/mama-zapisi/dead-orbit/main/files/DeadOrbit.part1.bin','https://raw.githubusercontent.com/mama-zapisi/dead-orbit/main/files/DeadOrbit.part2.bin'], TOTAL=184570243;
 const b=document.getElementById('dl'), st=document.getElementById('st'), bar=document.getElementById('bar'), fill=document.getElementById('fill');
 b.onclick=async()=>{b.disabled=true;bar.style.display='block';let got=0;const chunks=[];
  try{for(let i=0;i<parts.length;i++){const r=await fetch(parts[i]);if(!r.ok)throw new Error('часть '+(i+1)+': '+r.status);const rd=r.body.getReader();
